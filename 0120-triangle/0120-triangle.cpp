@@ -16,10 +16,12 @@ public:
   
     int minimumTotal(vector<vector<int>>& triangle) {
       int n = triangle.size();
-      vector<vector<int>> dp(n, vector<int>(n, 0));
+      //vector<vector<int>> dp(n, vector<int>(n, 0));
       // return f(0, 0, triangle, n, dp);
       
-      for(int i=0; i<n; i++) {
+      
+      // tabulation approach
+      /*for(int i=0; i<n; i++) {
         dp[n-1][i] = triangle[n-1][i];
       }
       
@@ -30,6 +32,22 @@ public:
           dp[i][j] = min(down, diag);
         }
       }
-      return dp[0][0];
+      return dp[0][0];*/
+      
+      // space optimization
+      vector<int> front(n, 0), curr(n, 0);
+      for(int i=0; i<n; i++) {
+        front[i] = triangle[n-1][i];
+      }
+      
+      for(int i = n-2; i >= 0; i--) {
+        for(int j = i; j >= 0; j--) {
+          int down = triangle[i][j] + front[j];
+          int diag = triangle[i][j] + front[j+1];
+          curr[j] = min(down, diag);
+        }
+        front = curr;
+      }
+      return front[0];
     }
 };
