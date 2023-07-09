@@ -12,7 +12,7 @@ public:
 			return arr[mid];
 		if((mid%2 == 1 && arr[mid] == arr[mid - 1]) or (mid%2 == 0 && arr[mid] == arr[mid + 1])) 
 			low = mid + 1;
-		else 
+		else
 			high = mid - 1;
 	}
 	return -1;
