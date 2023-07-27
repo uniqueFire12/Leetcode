@@ -1,35 +1,28 @@
 class Solution {
 public:
-    bool search(vector<int>& arr, int target) {
-        int n = arr.size();
-        
-        if(n == 1 && arr[0] != target) return false;
-        else if(n == 1&& arr[0] == target) return true;
-        
+    bool search(vector<int>& nums, int target) {
+        int n = nums.size();
         int low = 0, high = n-1;
-        
         while(low <= high) {
-            int mid = low + (high - low) / 2;
+            int mid = low + (high-low)/2;
+            if(nums[mid] == target) return true;
             
-            if(arr[mid] == target) return true;
-            
-            if(arr[low] == arr[mid] && arr[mid] == arr[high]) {
+            if(nums[low] == nums[mid] and nums[mid] == nums[high]) {
                 low++;
                 high--;
                 continue;
             }
             
-            if(arr[low] <= arr[mid]) {
-                if(arr[low] <= target && target <= arr[mid]) {
+            if(nums[low] <= nums[mid]) {
+                if(nums[low] <= target and target <= nums[mid]) {
                     high = mid - 1;
                 }
                 else {
                     low = mid + 1;
                 }
             }
-            
-            if(arr[mid] <= arr[high]) {
-                if(arr[mid] <= target && target <= arr[high]) {
+            else {
+                if(nums[mid] <= target and target <= nums[high]) {
                     low = mid + 1;
                 }
                 else {
@@ -37,7 +30,6 @@ public:
                 }
             }
         }
-        
         return false;
     }
 };
