@@ -12,7 +12,7 @@ public:
     int minEatingSpeed(vector<int>& piles, int h) {
         int low = 1, high = *max_element(piles.begin(), piles.end());
         while(low <= high) {
-            long long int mid = low + (high - low) / 2;
+            int mid = low + (high - low) / 2;
             double totalHours = cal(piles, mid);
             if(totalHours <= h) {
                 high = mid - 1;
