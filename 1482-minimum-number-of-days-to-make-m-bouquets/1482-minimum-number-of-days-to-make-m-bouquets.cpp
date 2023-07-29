@@ -20,8 +20,11 @@ public:
         int n = bloomDay.size();
         long long val = (long long) m * (long long) k;
         if(n < val) return -1;
-        int mx = *max_element(bloomDay.begin(), bloomDay.end());
-        int mn = *min_element(bloomDay.begin(), bloomDay.end());
+        int mx = INT_MIN, mn = INT_MAX;
+        for(int i=0; i<n; i++) {
+            mx = max(mx, bloomDay[i]);
+            mn = min(mn, bloomDay[i]);
+        }
         int low = mn, high = mx;
         while(low <= high) {
             int mid = low + (high - low) / 2;
