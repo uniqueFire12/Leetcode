@@ -1,36 +1,35 @@
 class Solution {
 public:
-    void solve(int node, vector<int> adjLs[], vector<int> &vis) {
+    void dfs(int node, vector<int> &vis, vector<int> adj[]) {
         vis[node] = 1;
-        for(auto it : adjLs[node]) {
+        
+        for(auto it : adj[node]) {
             if(!vis[it]) {
-                solve(it, adjLs, vis);
+                dfs(it, vis, adj);
             }
         }
     }
-    int findCircleNum(vector<vector<int>>& adj) {
+    int findCircleNum(vector<vector<int>>& mat) {
         int ans = 0;
-        int n = adj.size();
-        vector<int> visited(n+1, 0);
+        int n = mat.size();
+        vector<int> vis(n+1, 0);
+        vector<int> adj[n];
         
-        // to change adjacency matrix to list
-        vector<int> adjLs[n];
         for(int i=0; i<n; i++) {
             for(int j=0; j<n; j++) {
-                if(adj[i][j] == 1 && i != j) {
-                    adjLs[i].push_back(j);
-                    adjLs[j].push_back(i);
+                if(mat[i][j] == 1 and i != j) {
+                    adj[i].push_back(j);
+                    adj[j].push_back(i);
                 }
             }
         }
         
         for(int i=0; i<n; i++) {
-            if(!visited[i]) {
+            if(!vis[i]) {
                 ans++;
-                solve(i, adjLs, visited);
+                dfs(i, vis, adj);
             }
         }
-        
         return ans;
     }
 };
