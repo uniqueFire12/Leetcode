@@ -4,7 +4,7 @@ public:
         int n = nums.size();
         int low = 0, high = n-1;
         while(low <= high) {
-            int mid = low + (high-low)/2;
+            int mid = low + (high-low) / 2;
             if(nums[mid] == target) return true;
             
             if(nums[low] == nums[mid] and nums[mid] == nums[high]) {
@@ -13,10 +13,11 @@ public:
                 continue;
             }
             
+            // check if the array is left sorted or not
             if(nums[low] <= nums[mid]) {
                 if(nums[low] <= target and target <= nums[mid]) {
                     high = mid - 1;
-                }
+                } 
                 else {
                     low = mid + 1;
                 }
@@ -30,6 +31,7 @@ public:
                 }
             }
         }
+        
         return false;
     }
 };
