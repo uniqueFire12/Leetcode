@@ -12,7 +12,7 @@ public:
             }
         }
         
-        if(i + 2 < n && nums[i] == nums[i+1]-1 && nums[i] == nums[i+2] - 2 ){
+        if(i + 2 < n && nums[i+1] - nums[i] == 1 && nums[i+2] - nums[i+1] == 1){
             if(f(n, nums, i + 3, dp)) return true;
         }
         
