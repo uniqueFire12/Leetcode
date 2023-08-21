@@ -9,18 +9,18 @@ class Solution {
     vector<int> bfsOfGraph(int V, vector<int> adj[]) {
         vector<int> bfs;
         vector<int> vis(V, 0);
+        vis[0] = 1;
         queue<int> q;
         q.push(0);
+        
         while(!q.empty()) {
             int node = q.front();
             q.pop();
-            if(vis[node]) {
-                continue;
-            }
-            vis[node] = 1;
             bfs.push_back(node);
-            for(auto it: adj[node]) {
+            
+            for(auto it : adj[node]) {
                 if(!vis[it]) {
+                    vis[it] = 1;
                     q.push(it);
                 }
             }
