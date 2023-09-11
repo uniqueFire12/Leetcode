@@ -1,19 +1,17 @@
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {
-        int n = nums.size() + 1;
-        map<int, int> mpp;
-        for(auto it : nums) {
-            mpp[it]++;
-        }
-        int ans = -1;
-        for(int i = 0; i < n; i++) {
-            if(mpp.find(i) == mpp.end()) {
-                ans = i;
-                break;
-            }
+        int n = nums.size();
+        vector<int> hash(n+1, 0);
+        for(int i = 0; i < nums.size(); i++) {
+            hash[nums[i]] = 1;
         }
         
-        return ans;
+        for(int i = 0; i <= n; i++) {
+            if(hash[i] == 0) {
+                return i;
+            }
+        }
+        return -1;
     }
 };
