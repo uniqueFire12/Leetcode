@@ -2,15 +2,12 @@ class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
         int n = nums.size();
-        unordered_map<int,int> mpp;
-        vector<int> ans;
+        map<int,int> mpp;
         for(int i = 0; i < n; i++) {
-            int currVal = nums[i];
-            int remaining = target - currVal;
-            if(mpp.find(remaining) != mpp.end()) {
-               return {mpp[remaining], i};
+            if(mpp.find(target - nums[i]) != mpp.end()) {
+                return {mpp[target - nums[i]], i};
             }
-            mpp[currVal] = i;
+            mpp[nums[i]] = i;
         }
         return {-1, -1};
     }
