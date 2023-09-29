@@ -1,20 +1,20 @@
 class Solution {
 public:
     bool isMonotonic(vector<int>& nums) {
-        int mon_incr = 0, mon_decr = 0;
+        bool incr = true, decr = true;
         for(int i = 0; i < nums.size()-1; i++) {
             if(nums[i] > nums[i+1]) {
-                mon_incr++;
+                incr = false;
             }
         }
         
         for(int i = 0; i < nums.size()-1; i++) {
             if(nums[i] < nums[i+1]) {
-                mon_decr++;
+                decr = false;
             }
         }
         
-        if(mon_incr > 0 && mon_decr > 0) {
+        if(incr == false && decr == false) {
             return false;
         }
         
