@@ -1,23 +1,31 @@
 class Solution {
 public:
+    long atoi(int len, string s, int sign, int i, long num) {
+        // 3 base-cases
+        if(sign*num >= INT_MAX) return INT_MAX;
+        if(sign*num <= INT_MIN) return INT_MIN;
+        if(i >= len or s[i] < '0' or s[i] > '9') {
+            return sign*num; 
+        }
+        
+        num = atoi(len, s, sign, i+1, (num*10 + (s[i] - '0')));
+        return num;
+    }
+    
     int myAtoi(string s) {
-        int len = s.size();
-        double num = 0;
+        int n = s.size();
+        int sign = 1;
         int i = 0;
-        while(s[i] == ' ') {
+        while(s[i] == ' ') i++;
+        
+        if(s[i] == '+') {
             i++;
         }
-        bool pos = s[i] == '+';
-        bool neg = s[i] == '-';
-        pos == true ? i++ : i;
-        neg == true ? i++ : i;
-        while(i < len and s[i] >= '0' and s[i] <= '9') {
-            num = num*10 + (s[i] - '0');
+        else if(s[i] == '-') {
+            sign = -1;
             i++;
         }
-        num = neg ? -num : num;
-        num = (num > INT_MAX) ? INT_MAX : num;
-        num = (num < INT_MIN) ? INT_MIN : num;
-        return (int)num;
+        
+        return atoi(n, s, sign, i, 0);
     }
 };
