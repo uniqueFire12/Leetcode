@@ -15,6 +15,7 @@ public:
         vector<int> inorder;
         TreeNode* cur = root;
         
+        // using Morris Traversal
         while(cur != NULL) {
             if(cur->left == NULL) {
                 inorder.push_back(cur->val);
