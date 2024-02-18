@@ -8,11 +8,9 @@ public:
                 temp.push_back(nums[i]);
             }
         }
-        
-        int j = 0;        
+             
         for(int i = 0; i < temp.size(); i++) {
-            nums[j] = temp[i];
-            j++;
+            nums[i] = temp[i];
         }
         
         for(int i = temp.size(); i < nums.size(); i++) {
