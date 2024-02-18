@@ -1,21 +1,28 @@
 class Solution {
 public:
-    void moveZeroes(vector<int>& a) {
-        int n = a.size();
-        vector<int> t;
-        for(int i = 0; i < n; i++) {
-            if(a[i] != 0) {
-                t.push_back(a[i]);
+    void moveZeroes(vector<int>& nums) {
+        int zero = 0;
+        vector<int> temp;
+        for(int i=0; i<nums.size(); i++) {
+            if(nums[i] == 0) {
+                zero++;
+            }
+            else if(nums[i] != 0) {
+                temp.push_back(nums[i]);
             }
         }
-
-        for(int i = 0; i < t.size(); i++) {
-            a[i] = t[i];
+        
+        if(zero == 0) return;
+        
+        int j = 0;        
+        for(int i = 0; i < temp.size(); i++) {
+            nums[j] = temp[i];
+            j++;
         }
-
-        int nzero = t.size();
-        for(int i = nzero; i < n; i++) {
-            a[i] = 0;
+        
+        for(int i = 0; i < zero; i++) {
+            nums[j] = 0;
+            j++;
         }
     }
 };
